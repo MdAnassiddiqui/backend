@@ -14,6 +14,7 @@ let updateCount = 0;
 app.post('/add', (req, res) => {
   try {
     const newItem = req.body; 
+    console.log('New Item:', newItem); // Log the received data
     items.push(newItem);
     addCount++; 
     res.status(201).send('Data added successfully');
@@ -26,6 +27,7 @@ app.post('/add', (req, res) => {
 app.patch('/update', (req, res) => {
   try {
     const updatedItem = req.body;
+    console.log('Updated Item:', updatedItem); // Log the received data
     const index = items.findIndex(item => item.id === updatedItem.id);
     if (index !== -1) {
       items[index] = updatedItem;
@@ -39,6 +41,7 @@ app.patch('/update', (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 app.get('/count', (req, res) => {
   res.json({ addCount, updateCount });
