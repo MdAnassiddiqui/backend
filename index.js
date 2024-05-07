@@ -3,7 +3,9 @@ const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://addand-update-vakj.vercel.app'
+}));
 
 let items = []; 
 let addCount = 0; 
@@ -45,7 +47,7 @@ app.get('/count', (req, res) => {
   res.json({ addCount, updateCount });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
